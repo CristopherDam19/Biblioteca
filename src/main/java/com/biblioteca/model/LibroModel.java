@@ -1,6 +1,8 @@
 package com.biblioteca.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -15,12 +17,13 @@ public class LibroModel {
         private static Long ultimoId = 0L;
         private String estadoDisponibilidad = "";
 
+        private static List<LibroModel> listaLibros = new ArrayList<>();;
+
     public LibroModel() {
         this.id = ++ultimoId;
         this.estadoDisponibilidad = "Disponible"; // Default value
     }
-    public LibroModel(String titulo, String autor, String editorial,
-                      LocalDate fechaPublicacion, int numeroPaginas) {
+    public LibroModel(String titulo, String autor, String editorial, LocalDate fechaPublicacion, int numeroPaginas) {
         this();
         this.titulo = Objects.requireNonNull(titulo, "Título no puede ser nulo");
         this.autor = Objects.requireNonNull(autor, "Autor no puede ser nulo");
@@ -104,7 +107,15 @@ public class LibroModel {
         this.estadoDisponibilidad = "No disponible: " + Objects.requireNonNull(razon);
     }
 
+    public static  void agregarLibro(LibroModel libro) {
+        listaLibros.add(libro);
+    }
 
+    public static void listarLibros(){
+        for (LibroModel libro : listaLibros) {
+            System.out.println(libro.detalle());
+        }
+    }
 
     public String detalle (){
         return  "ID: " + String.valueOf(this.getId()) +"\n"+
@@ -113,8 +124,10 @@ public class LibroModel {
                 "Fecha de Publicacion: " + this.fechaPublicacion +"\n"+
                 "Editorial: " + this.getEditorial() +"\n"+
                 "Numero de Paginas: " + this.getNumeroPaginas() +"\n"+
-                "Disponible: " + getEstadoDisponibilidad() ;
+                "Estado: " + this.estadoDisponibilidad ;
     }
+
+
 
 
 }
