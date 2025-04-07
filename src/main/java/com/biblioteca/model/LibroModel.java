@@ -111,12 +111,9 @@ public class LibroModel {
         listaLibros.add(libro);
     }
 
-    public static void listarLibros(){
-        for (LibroModel libro : listaLibros) {
-            System.out.println(libro.detalle());
-        }
+    public static List<LibroModel> listarLibros() {
+        return listaLibros;
     }
-
     public String detalle (){
         return  "ID: " + String.valueOf(this.getId()) +"\n"+
                 "Titulo: "+ this.getTitulo()+"\n"+
@@ -125,6 +122,10 @@ public class LibroModel {
                 "Editorial: " + this.getEditorial() +"\n"+
                 "Numero de Paginas: " + this.getNumeroPaginas() +"\n"+
                 "Estado: " + this.estadoDisponibilidad ;
+    }
+
+    private void createUIComponents() {
+
     }
 
 
